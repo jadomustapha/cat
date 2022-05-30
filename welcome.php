@@ -1,12 +1,8 @@
-<?php
-include_once('fb-config.php');
-if(isset($_SESSION['fbUserId']) and $_SESSION['fbUserId']!=""){
-	header('location: welcome.php');
+<?php include_once('fb-config.php');
+if(!isset($_SESSION['fbUserId']) and $_SESSION['fbUserId']==""){
+	header('location: index.php');
 	exit;
-}
-$permissions = array('email'); // Optional permissions
-$loginUrl = $helper->getLoginUrl('fb-callback.php', $permissions);
-?>
+}?>
 <!doctype html>
 <html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec"  prefix="og: http://ogp.me/ns#" class="no-js">
 <head>
@@ -17,32 +13,17 @@ $loginUrl = $helper->getLoginUrl('fb-callback.php', $permissions);
 	<link rel="shortcut icon" href="https://learncodeweb.com/demo/favicon.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131906273-1"></script>
 </head>
 
 <body>
- <div class="bg-primary d-flex justify-content-center py5">
-        <h5 class="text-white">IREMBO | Practical CAT</h5>
-    </div>
+	
 	
 	<div class="container">
-    	<div class="row d-flex justify-content-center align-items-center" style="height:70vh">
-			<div class="col-sm-12 col-md-4 m-auto">
-				<div class="border p-5 mb-5">
-					<form method="post">
-						<div class="form-group" style="height:15vh">
-							
-							<strong>Connect to irembo</strong>
-						</div>
-						<div class="form-group">
-							<a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary btn-block"><i class="fab fa-facebook-square"></i> Log in with Facebook!</a>
-						</div>
-						
-					</form>
-				</div>
+		<h1 class="text-center"><a href="https://learncodeweb.com/php/login-with-facebook-using-php-sdk/">Login with Facebook using PHP SDK</a></h1>
+    	<div class="row">
+			<div class="col-sm-12 text-center p-5">
+				<p>Welcome <em class="text-danger"><?php echo $_SESSION['fbUserName']?></em></p>
+				<a href="logout.php" class="btn btn-lg btn-danger"><i class="fa fa-fw fa-power-off"></i> Logout</a>
 			</div>
 		</div>
     </div> <!--/.container-->
